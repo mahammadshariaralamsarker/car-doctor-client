@@ -3,7 +3,7 @@ import logo from '../../../assets/logo.svg'
 import { Link } from 'react-router-dom';
 const Navbar = () => {
     const navitems = <>
-        <li><Link to=''>Home</Link></li>
+        <li><Link to='/'>Home</Link></li>
         <li><Link to=''>About</Link></li>
         <li><Link to=''>Services</Link></li>
         <li><Link to=''>Blog</Link></li>
