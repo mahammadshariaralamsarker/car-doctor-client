@@ -1,7 +1,20 @@
 
+import { useContext } from 'react';
 import logo from '../../../assets/logo.svg'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
 const Navbar = () => {
+
+    const {user,logout,setLoading}= useContext(AuthContext);
+    const handleLogOut = () => {
+        setLoading(true)
+        logout();
+    }
+
+
+
+
+
     const navitems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to=''>About</Link></li>
@@ -9,6 +22,7 @@ const Navbar = () => {
         <li><Link to=''>Blog</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to=''>Contact</Link></li>
+        {user?.email?<li><Link onClick={handleLogOut} to='/login'>LogOut</Link></li>:<li><Link to='/login'>Login</Link></li>}
     </>
     return (
         <div className="navbar bg-base-100">
