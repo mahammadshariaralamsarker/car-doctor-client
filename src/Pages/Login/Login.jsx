@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import img from './../../assets/image/login/login img.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
@@ -16,7 +16,7 @@ const Login = () => {
         signIn(email,password)
         .then(result =>{
             const user = result.user;
-            console.log(user)
+            <Navigate to="/home"></Navigate>
         })
         .catch(err =>{
             console.log(err)
