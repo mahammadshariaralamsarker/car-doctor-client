@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 const Navbar = () => {
 
-    const {user,logout,setLoading}= useContext(AuthContext);
+    const {user,logout}= useContext(AuthContext);
     const handleLogOut = () => {
-        setLoading(true)
-        logout();
+        logout()
+        .then(()=>{})
+        .catch(err => console.log(err))
     }
 
     const navitems = <>
@@ -21,7 +22,7 @@ const Navbar = () => {
         {user?.email?
             <>
             <li><Link  to='/bookings'>My Bookings</Link></li>
-            <li><Link onClick={handleLogOut} to='/login'>LogOut</Link></li>
+            <li><Link onClick={handleLogOut} >Log Out</Link></li>
             </>
             
             :<li><Link to='/login'>Login</Link></li>}
@@ -37,7 +38,6 @@ const Navbar = () => {
                         {navitems}
                     </ul>
                 </div>
-                {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
                 <Link to="/"><img src={logo} alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">

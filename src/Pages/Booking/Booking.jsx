@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import BookingRow from './BookingRow.jsx';
+import axios from 'axios';
 
 const Booking = () => {
     const { user } = useContext(AuthContext)
@@ -8,12 +9,14 @@ const Booking = () => {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        fetch(url)
+        axios.get(url,{withCredentials:true})
+        .then(res=> {
+            setBookings(res.data)
+        })
+
+        /* fetch(url)
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setBookings(data)
-            })
+            .then(data => setBookings(data)) */
     }, [url])
 
 
@@ -25,7 +28,6 @@ const Booking = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data)
                     if (data.deletedCount > 0) {
                         alert("deleted successfull")
                         const remaining = bookings.filter(booking => booking._id!==id)

@@ -10,7 +10,6 @@ const BookService = () => {
     const { title, price,img, service_id } = service;
     const handleBookService = e =>{
         e.preventDefault();
-        // console.log('okk')
         const form = e.target;
         const name = form.name.value;
         const date = form.date.value;
